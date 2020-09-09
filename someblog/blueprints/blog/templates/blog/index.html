@@ -1,0 +1,29 @@
+{% extends "bootstrap/base.html" %}
+
+{% block navbar %}
+    {% include 'base/nav.html' %}
+{% endblock %}
+
+{% block title %}
+    Posts
+{% endblock %}
+
+{% block content %}
+
+    {% include 'base/flash.html' %}
+
+    <div class="container">
+
+        <h1>Posts</h1>
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a href="{{ post.slug }}">
+                        {{ post.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}

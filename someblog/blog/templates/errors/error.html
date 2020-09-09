@@ -1,7 +1,7 @@
 {% extends "bootstrap/base.html" %}
 
 {% block navbar %}
-    {% include 'base/nav.html.j2' %}
+    {% include 'base/nav.html' %}
 {% endblock %}
 
 {% block title %}
@@ -10,8 +10,6 @@
 
 {% block content %}
     <div class="container">
-        <div class="row">
-            <h1>Welcome to my posts</h1>
-        </div>
+        <p>{{ error }}</p>
     </div>
 {% endblock %}
