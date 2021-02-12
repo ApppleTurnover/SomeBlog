@@ -2,28 +2,54 @@
 
 {% block navbar %}
     {% include 'base/nav.html' %}
-{% endblock %}
+{% endblock navbar %}
 
 {% block title %}
     Posts
-{% endblock %}
+{% endblock title %}
 
 {% block content %}
+    {% block main %}
 
-    {% include 'base/flash.html' %}
+        {% include 'base/flash.html' %}
 
-    <div class="container">
+        <div class="container">
 
-        <h1>Posts</h1>
-        <ul>
-            {% for post in posts %}
-                <li>
-                    <a href="{{ post.slug }}">
-                        {{ post.title }}
+            <h1 class="">Posts</h1>
+            <br>
+            <div class="list-group list-group-flush">
+                <div class="list-group-item-secondary text-md-center mx-5">
+                    <p class="m-2">
+                        {{ cat_fact }}
+                    </p>
+                </div>
+                <br>
+                {% for post in posts[:5] %}
+                    <a class="list-group-item list-group-item-action" href="{{ post.slug }}">
+                        <figure>
+                            <span class="h3 ml-4">{{ post.title }}</span>
+                            <figcaption class="blockquote-footer">
+                                {% if post.body == post.body[:90] %}
+                                    {{ post.body }}
+                                {% else %}
+                                    {{ post.body[:90] }}..
+                                {% endif %}
+                            </figcaption>
+                        </figure>
                     </a>
-                </li>
-            {% endfor %}
-        </ul>
+                {% endfor %}
+                <hr>
+            </div>
+        </div>
+    {% endblock main %}
 
-    </div>
-{% endblock %}
+    {% block footer %}
+        <div class="footer">
+            <div class="container">
+                <a class="btn btn-outline-dark" href="{{ url_for('blog.create_post') }}">Create Post</a>
+            </div>
+        </div>
+    {% endblock footer %}
+
+{% endblock content %}
+

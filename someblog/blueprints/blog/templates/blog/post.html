@@ -9,5 +9,24 @@
 {% endblock %}
 
 {% block content %}
-    {{ post.body }}
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <div class="tags">
+            {% for tag in tags %}
+                <a href="tag/{{ tag.slug }}">
+                    <span class="badge badge-{% if tag.id // 6 == 0 %}primary{% endif %}
+                                             {% if tag.id // 6 == 1 %}success{% endif %}
+                                             {% if tag.id // 6 == 2 %}info{% endif %}
+                                             {% if tag.id // 6 == 3 %}warning{% endif %}
+                                             {% if tag.id // 6 == 4 %}danger{% endif %}
+                                             {% if tag.id // 6 == 5 %}dark{% endif %}
+                    ">{{ tag.name }}</span>
+
+                </a>
+            {% endfor %}
+        </div>
+        <div class="main-content">
+            {{ post.body }}
+        </div>
+    </div>
 {% endblock %}
